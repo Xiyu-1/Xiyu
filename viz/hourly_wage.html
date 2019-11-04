@@ -1,0 +1,74 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<script src="../d3plus.v2.js"></script>
+
+<body>
+
+</body>
+
+<div id="viz"></div>
+
+<script>
+
+// Bar Chart: Household_Income_for_Immigrants
+var data = [
+  {parent: "Texas", id: "Brownsville, TX", value: 15
+},
+  {parent: "Texas", id: "Corpus Christi, TX",  value: 15
+},
+  {parent: "Texas", id: "Victoria, TX", value: 15
+},
+  {parent: "Texas", id: "Pearland, TX", value: 15
+},
+  {parent: "Texas", id: "Houston, TX", value: 16
+},
+  {parent: "Texas", id: "Beaumont, TX", value: 14
+},
+  {parent: "Louisiana", id: "Lake Charles, LA", value: 16
+},
+  {parent: "Louisiana", id: "Lafayette, LA", value: 12
+},
+  {parent: "Louisiana", id: "Houma, LA", value: 18
+},
+  {parent: "Louisiana", id: "New Orleans, LA", value: 16
+},
+  {parent: "Mississippi", id: "Gulfport, MS", value: 15
+},
+  {parent: "Alabama", id: "Mobile, AL", value: 15
+},
+  {parent: "Florida", id: "Pensacola, FL", value: 17},
+  {parent: "Florida", id: "Panama City, FL", value: 12},
+  {parent: "Florida", id: "Tallahassee, FL", value: 16},
+  {parent: "Florida", id: "Lake City, FL", value: 0},
+  {parent: "Florida", id: "Gainesville, FL", value: 16},
+  {parent: "Florida", id: "Ocala, FL", value: 14
+},
+  {parent: "Florida", id: "Tampa, FL", value: 16
+},
+  {parent: "Florida", id: "Sarasota, FL", value: 14
+},
+  {parent: "Florida", id: "Cape Coral, FL", value: 16},
+  {parent: "Florida", id: "Miami, FL", value: 17}
+];
+
+new d3plus.BarChart()
+  .data(data)
+  .x("id")
+  .xSort (function(a,b){
+      return b["value"] - a["value"];
+    })
+  .y("value")
+  .color("parent")
+  .groupBy("parent","id")
+  .tooltipConfig ({
+      title: function(d) {
+        return "Hourly Wage: ";
+      },
+      tbody: [
+        ["$", function(d) { return d["value"] }]
+      ]
+    })
+  .render();
+
+</script>

@@ -1,0 +1,77 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<script src="../d3plus.v2.js"></script>
+
+<body>
+
+</body>
+
+<div id="viz"></div>
+
+<script>
+
+// Bar Chart: Household_Income_for_Immigrants
+var data = [
+  {parent: "Texas", id: "Brownsville, TX", value: 29612},
+  {parent: "Texas", id: "Corpus Christi, TX",  value: 28188},
+  {parent: "Texas", id: "Victoria, TX", value: 29398},
+  {parent: "Texas", id: "Pearland, TX", value: 32033},
+  {parent: "Texas", id: "Houston, TX", value: 30422
+},
+  {parent: "Texas", id: "Beaumont, TX", value: 29302
+},
+  {parent: "Louisiana", id: "Lake Charles, LA", value: 30013
+},
+  {parent: "Louisiana", id: "Lafayette, LA", value: 32663
+},
+  {parent: "Louisiana", id: "Houma, LA", value: 18462
+},
+  {parent: "Louisiana", id: "New Orleans, LA", value: 30512
+},
+  {parent: "Mississippi", id: "Gulfport, MS", value: 27005
+},
+  {parent: "Alabama", id: "Mobile, AL", value: 24148
+},
+  {parent: "Florida", id: "Pensacola, FL", value: 25186
+},
+  {parent: "Florida", id: "Panama City, FL", value: 26490
+},
+  {parent: "Florida", id: "Tallahassee, FL", value: 23910
+},
+  {parent: "Florida", id: "Lake City, FL", value: 30403
+},
+  {parent: "Florida", id: "Gainesville, FL", value: 32255
+},
+  {parent: "Florida", id: "Ocala, FL", value: 25324
+},
+  {parent: "Florida", id: "Tampa, FL", value: 26161
+},
+  {parent: "Florida", id: "Sarasota, FL", value: 24460
+},
+  {parent: "Florida", id: "Cape Coral, FL", value: 25797
+},
+  {parent: "Florida", id: "Miami, FL", value: 30128
+}
+];
+
+new d3plus.BarChart()
+  .data(data)
+  .x("id")
+  .xSort (function(a,b){
+      return b["value"] - a["value"];
+    })
+  .y("value")
+  .color("parent")
+  .groupBy("parent","id")
+  .tooltipConfig ({
+      title: function(d) {
+        return "Hispanic Immigrant Individual Income: ";
+      },
+      tbody: [
+        ["$", function(d) { return d["value"] }]
+      ]
+    })
+  .render();
+
+</script>
